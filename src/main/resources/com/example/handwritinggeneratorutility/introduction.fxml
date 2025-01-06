@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.IntroController">
    <children>
       <MenuBar prefHeight="20.0" prefWidth="400.0" style="-fx-background-color: #000000;">
         <menus>
           <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Файл">
             <items>
+                  <MenuItem mnemonicParsing="false" text="Загрузить конфигурацию" />
               <MenuItem mnemonicParsing="false" text="Выйти" />
             </items>
           </Menu>
@@ -21,15 +27,15 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane layoutX="91.0" layoutY="26.0" prefHeight="374.0" prefWidth="218.0" style="-fx-background-color: lightblue;">
+      <Pane id="form_pane" layoutX="91.0" layoutY="26.0" prefHeight="374.0" prefWidth="218.0" style="-fx-background-color: lightblue;" stylesheets="@introduction.css">
          <children>
             <Label layoutX="17.0" layoutY="175.0" prefHeight="18.0" prefWidth="158.0" text="Путь до папки сохранения">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField layoutX="14.0" layoutY="196.0" prefHeight="25.0" prefWidth="186.0" style="-fx-max-width: 200;" />
-            <Button fx:id="btn_select_path" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: black;" text="Выбрать путь" textFill="#eeeeee">
+            <TextField fx:id="tf_path" layoutX="14.0" layoutY="196.0" prefHeight="25.0" prefWidth="186.0" style="-fx-max-width: 200;" />
+            <Button id="btn_select_path" fx:id="btn_select_path" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#pathSelect" prefHeight="25.0" prefWidth="103.0" styleClass="btn" stylesheets="@introduction.css" text="Выбрать путь" textFill="#eeeeee">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -46,12 +52,12 @@
                </font>
             </Label>
             <TextField fx:id="tf_height" layoutX="120.0" layoutY="139.0" prefHeight="25.0" prefWidth="84.0" style="-fx-max-width: 200;" />
-            <Button fx:id="btn_open_canvas" layoutX="40.0" layoutY="304.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #000000;" text="Открыть холст" textFill="#eeeeee">
+            <Button id="btn_open_canvas" fx:id="btn_open_canvas" layoutX="40.0" layoutY="304.0" mnemonicParsing="false" onAction="#openCanvas" prefHeight="40.0" prefWidth="131.0" styleClass="btn" stylesheets="@introduction.css" text="Открыть холст" textFill="#eeeeee">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label prefHeight="17.0" prefWidth="0.0" textFill="RED" visible="false" />
+            <Label id="err_message" fx:id="err_message" layoutX="14.0" layoutY="57.0" stylesheets="@introduction.css" text="Label" textAlignment="CENTER" textFill="RED" />
          </children>
       </Pane>
    </children>

@@ -1,0 +1,21 @@
+.btn {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.btn:hover {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+}
+
+#err_message {
+    visibility: false;
+    -fx-wrap-text: true;
+    -fx-alignment: left;
+    -fx-max-width: 196px;
+    -fx-padding: 0;
+    -fx-start-margin: 100px;
+}
+
+#form_pane {
+}
