@@ -1,9 +1,12 @@
 package com.example.handwritinggeneratorutility.controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -11,6 +14,16 @@ import java.io.File;
 
 public class IntroController {
     private Stage stage;
+    private boolean ctrlPressed;
+
+    @FXML
+    protected MenuItem mi_load;
+
+    @FXML
+    protected MenuItem mi_exit;
+
+    @FXML
+    protected MenuItem mi_about;
 
     @FXML
     protected Label err_message;
@@ -34,6 +47,8 @@ public class IntroController {
 
     public void setDefault(Stage stage) {
         err_message.setVisible(false);
+        this.ctrlPressed = false;
+        this.stage = stage;
     }
 
     private boolean isWidthValid() {
@@ -102,4 +117,25 @@ public class IntroController {
 
         // TODO: creating instance of Session and bundling with SessionController
     }
+
+    @FXML
+    protected void loadConf() {}
+
+    @FXML
+    protected void closePage() {
+        this.stage.close();
+    }
+
+    @FXML
+    protected void showAbout() {}
+
+    @FXML
+    protected void keyPressedListen(KeyEvent e) {
+        if(e.isControlDown() && e.getCode().getChar().equals("Q")) {
+            this.closePage();
+        }
+    }
+
+    @FXML
+    protected void keyReleasedListen(KeyEvent e) {}
 }
