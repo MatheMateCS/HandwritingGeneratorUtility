@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.handwritinggeneratorutility.IntroController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="20.0" prefWidth="400.0" style="-fx-background-color: #000000;">
+        <menus>
+          <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Выйти" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Правка" />
+          <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Помощь">
+            <items>
+              <MenuItem mnemonicParsing="false" text="О программе" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane layoutX="91.0" layoutY="26.0" prefHeight="374.0" prefWidth="218.0" style="-fx-background-color: lightblue;">
+         <children>
+            <Label layoutX="17.0" layoutY="175.0" prefHeight="18.0" prefWidth="158.0" text="Путь до папки сохранения">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField layoutX="14.0" layoutY="196.0" prefHeight="25.0" prefWidth="186.0" style="-fx-max-width: 200;" />
+            <Button fx:id="btn_select_path" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: black;" text="Выбрать путь" textFill="#eeeeee">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="118.0" style="-fx-alignment: center;" text="Ширина холста">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_width" layoutX="14.0" layoutY="139.0" maxWidth="91.0" prefHeight="25.0" prefWidth="91.0" style="-fx-max-width: 200;" />
+            <Label layoutX="120.0" layoutY="118.0" text="Высота холста">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_height" layoutX="120.0" layoutY="139.0" prefHeight="25.0" prefWidth="84.0" style="-fx-max-width: 200;" />
+            <Button fx:id="btn_open_canvas" layoutX="40.0" layoutY="304.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: #000000;" text="Открыть холст" textFill="#eeeeee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label prefHeight="17.0" prefWidth="0.0" textFill="RED" visible="false" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
