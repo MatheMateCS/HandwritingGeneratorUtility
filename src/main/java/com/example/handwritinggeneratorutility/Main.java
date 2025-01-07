@@ -1,6 +1,8 @@
 package com.example.handwritinggeneratorutility;
 
+import com.example.handwritinggeneratorutility.controller.GeneratorController;
 import com.example.handwritinggeneratorutility.controller.IntroController;
+import com.example.handwritinggeneratorutility.model.Generator;
 import com.example.handwritinggeneratorutility.model.GeneratorConfiguration;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -33,11 +35,13 @@ public class Main extends Application {
 
     public static void launchGeneratorWindow(GeneratorConfiguration conf) throws IOException {
         Stage stage = new Stage();
+        Generator generator = new Generator(conf);
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         URL introPath = Main.class.getResource("generator.fxml");
         fxmlLoader.setLocation(introPath);
         Parent root = fxmlLoader.load();
-//        ((IntroController) fxmlLoader.getController()).setDefault(stage);
+        ((GeneratorController) fxmlLoader.getController()).setDefault(stage, generator);
 
         Scene scene = new Scene(root, conf.getWidth(), conf.getHeight());
 
