@@ -4,10 +4,7 @@ import com.example.handwritinggeneratorutility.Main;
 import com.example.handwritinggeneratorutility.model.GeneratorConfiguration;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -22,6 +19,15 @@ public class IntroController {
 
     @FXML
     protected Pane pane;
+
+    @FXML
+    protected Menu menu_file;
+
+    @FXML
+    protected Menu menu_edit;
+
+    @FXML
+    protected Menu menu_help;
 
     @FXML
     protected MenuItem mi_load;
@@ -50,12 +56,13 @@ public class IntroController {
     @FXML
     protected Button btn_open_canvas;
 
-//    IntroController() {}
+    public IntroController() {}
 
     public void setDefault(Stage stage) {
         err_message.setVisible(false);
         this.stage = stage;
-        this.tf_path.setFocusTraversable(false);
+        tf_path.setFocusTraversable(false);
+        pane.requestFocus();
     }
 
     private boolean isWidthValid() {
@@ -146,6 +153,12 @@ public class IntroController {
     protected void keyPressedListen(KeyEvent e) {
         if(e.isControlDown() && e.getCode().getChar().equals("Q")) {
             this.closePage();
+        }
+        if(e.isControlDown() && e.isAltDown() && e.getCode().getChar().equals("P")) {
+            this.stage.setAlwaysOnTop(!this.stage.alwaysOnTopProperty().getValue());
+        }
+        if(e.getCode().getName().equals("Enter")) {
+            this.openCanvas();
         }
     }
 
