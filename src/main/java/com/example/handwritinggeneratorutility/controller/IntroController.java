@@ -10,9 +10,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class IntroController {
     private Stage stage;
@@ -91,6 +102,21 @@ public class IntroController {
         return dir.exists();
     }
 
+    private void saveConf() {
+        StringBuilder sbuilder = new StringBuilder();
+        sbuilder.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n").
+                append("<configuration>\n").
+                append(String.format("\t<width>%s</width>\n", tf_width.getCharacters().toString())).
+                append(String.format("\t<height>%s</height>\n", tf_height.getCharacters().toString())).
+                append(String.format("\t<path>%s</path>\n", tf_path.getCharacters().toString())).
+                append("</configuration>");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Main.class.getResource("configurations/generator_conf.xml").getPath()))) {
+            writer.write(sbuilder.toString());
+        } catch (IOException e) {
+            System.out.println("IOException");
+        }
+    }
+
     @FXML
     protected void pathSelect() {
         DirectoryChooser dirChooser = new DirectoryChooser();
@@ -132,6 +158,7 @@ public class IntroController {
         try {
             Main.launchGeneratorWindow(new GeneratorConfiguration(Integer.parseInt(tf_width.getCharacters().toString()),
                     Integer.parseInt(tf_height.getCharacters().toString()), tf_path.getCharacters().toString()));
+            this.saveConf();
         } catch (IOException e) {
             System.err.println("Problems with source file loading!");
             throw new RuntimeException(e);
@@ -139,7 +166,20 @@ public class IntroController {
     }
 
     @FXML
-    protected void loadConf() {}
+    protected void loadConf() {
+        try {
+            DocumentBuilder builder = (DocumentBuilderFactory.newInstance()).newDocumentBuilder();
+            Document xml = builder.parse(Main.class.getResource("configurations/generator_conf.xml").getPath());
+            tf_width.setText(xml.getElementsByTagName("width").item(0).getTextContent());
+            tf_height.setText(xml.getElementsByTagName("height").item(0).getTextContent());
+            tf_path.setText(xml.getElementsByTagName("path").item(0).getTextContent());
+        } catch (ParserConfigurationException e) {
+            System.out.println("Smth got wrong!");
+        } catch (IOException | SAXException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     @FXML
     protected void closePage() {
