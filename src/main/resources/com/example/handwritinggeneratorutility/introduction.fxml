@@ -1,63 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.IntroController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedListen" onKeyReleased="#keyReleasedListen" onMouseClicked="#mouseClickedListen" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.IntroController">
    <children>
-      <MenuBar prefHeight="20.0" prefWidth="400.0" style="-fx-background-color: #000000;">
+      <MenuBar id="menubar" prefHeight="20.0" prefWidth="400.0" stylesheets="@styles/introduction.css">
         <menus>
-          <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Файл">
+          <Menu mnemonicParsing="false" styleClass="menu" text="Файл">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Загрузить конфигурацию" />
-              <MenuItem mnemonicParsing="false" text="Выйти" />
+                  <MenuItem fx:id="mi_load" mnemonicParsing="false" onAction="#loadConf" text="Загрузить конфигурацию" />
+              <MenuItem fx:id="mi_exit" mnemonicParsing="false" onAction="#closePage" text="Выйти" />
             </items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="F" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
           </Menu>
-          <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Правка" />
-          <Menu mnemonicParsing="false" style="-fx-background-color: #444444;" text="Помощь">
+          <Menu mnemonicParsing="false" styleClass="menu" text="Правка">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="E" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator></Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
             <items>
-              <MenuItem mnemonicParsing="false" text="О программе" />
+              <MenuItem fx:id="mi_about" mnemonicParsing="false" onAction="#showAbout" text="О программе" />
             </items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="H" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
           </Menu>
         </menus>
       </MenuBar>
-      <Pane id="form_pane" layoutX="91.0" layoutY="26.0" prefHeight="374.0" prefWidth="218.0" style="-fx-background-color: lightblue;" stylesheets="@introduction.css">
+      <Pane id="form_pane" layoutX="91.0" layoutY="26.0" prefHeight="374.0" prefWidth="218.0" style="-fx-background-color: lightblue;" stylesheets="@styles/introduction.css">
          <children>
             <Label layoutX="17.0" layoutY="175.0" prefHeight="18.0" prefWidth="158.0" text="Путь до папки сохранения">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_path" layoutX="14.0" layoutY="196.0" prefHeight="25.0" prefWidth="186.0" style="-fx-max-width: 200;" />
-            <Button id="btn_select_path" fx:id="btn_select_path" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#pathSelect" prefHeight="25.0" prefWidth="103.0" styleClass="btn" stylesheets="@introduction.css" text="Выбрать путь" textFill="#eeeeee">
+            <TextField id="tf_path" fx:id="tf_path" layoutX="14.0" layoutY="196.0" prefHeight="25.0" prefWidth="186.0" promptText="C:\" style="-fx-max-width: 200;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Button id="btn_select_path" fx:id="btn_select_path" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#pathSelect" prefHeight="25.0" prefWidth="103.0" styleClass="btn" stylesheets="@styles/introduction.css" text="Выбрать путь" textFill="#eeeeee">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="14.0" layoutY="118.0" style="-fx-alignment: center;" text="Ширина холста">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_width" layoutX="14.0" layoutY="139.0" maxWidth="91.0" prefHeight="25.0" prefWidth="91.0" style="-fx-max-width: 200;" />
+            <TextField id="tf_width" fx:id="tf_width" layoutX="14.0" layoutY="139.0" maxWidth="91.0" prefHeight="25.0" prefWidth="91.0" promptText="512" style="-fx-max-width: 200;" stylesheets="@styles/introduction.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label layoutX="120.0" layoutY="118.0" text="Высота холста">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_height" layoutX="120.0" layoutY="139.0" prefHeight="25.0" prefWidth="84.0" style="-fx-max-width: 200;" />
-            <Button id="btn_open_canvas" fx:id="btn_open_canvas" layoutX="40.0" layoutY="304.0" mnemonicParsing="false" onAction="#openCanvas" prefHeight="40.0" prefWidth="131.0" styleClass="btn" stylesheets="@introduction.css" text="Открыть холст" textFill="#eeeeee">
+            <TextField id="tf_height" fx:id="tf_height" layoutX="120.0" layoutY="139.0" prefHeight="25.0" prefWidth="84.0" promptText="512" style="-fx-max-width: 200;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Button id="btn_open_canvas" fx:id="btn_open_canvas" layoutX="40.0" layoutY="304.0" mnemonicParsing="false" onAction="#openCanvas" prefHeight="40.0" prefWidth="131.0" styleClass="btn" stylesheets="@styles/introduction.css" text="Открыть холст" textFill="#eeeeee">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label id="err_message" fx:id="err_message" layoutX="14.0" layoutY="57.0" stylesheets="@introduction.css" text="Label" textAlignment="CENTER" textFill="RED" />
+            <Label id="err_message" fx:id="err_message" layoutX="14.0" layoutY="57.0" stylesheets="@styles/introduction.css" text="Label" textAlignment="CENTER" textFill="RED" />
          </children>
       </Pane>
    </children>

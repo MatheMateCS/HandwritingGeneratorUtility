@@ -11,11 +11,6 @@
 #err_message {
     visibility: false;
     -fx-wrap-text: true;
-    -fx-alignment: left;
     -fx-max-width: 196px;
-    -fx-padding: 0;
-    -fx-start-margin: 100px;
 }
 
-#form_pane {
-}
