@@ -1,5 +1,7 @@
 package com.example.handwritinggeneratorutility.controller;
 
+import com.example.handwritinggeneratorutility.Main;
+import com.example.handwritinggeneratorutility.model.GeneratorConfiguration;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,14 +9,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 
 public class IntroController {
     private Stage stage;
-    private boolean ctrlPressed;
+
+    @FXML
+    protected Pane pane;
 
     @FXML
     protected MenuItem mi_load;
@@ -47,8 +54,8 @@ public class IntroController {
 
     public void setDefault(Stage stage) {
         err_message.setVisible(false);
-        this.ctrlPressed = false;
         this.stage = stage;
+        this.tf_path.setFocusTraversable(false);
     }
 
     private boolean isWidthValid() {
@@ -115,7 +122,13 @@ public class IntroController {
             return;
         }
 
-        // TODO: creating instance of Session and bundling with SessionController
+        try {
+            Main.launchGeneratorWindow(new GeneratorConfiguration(Integer.parseInt(tf_width.getCharacters().toString()),
+                    Integer.parseInt(tf_height.getCharacters().toString()), tf_path.getCharacters().toString()));
+        } catch (IOException e) {
+            System.err.println("Problems with source file loading!");
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -138,4 +151,9 @@ public class IntroController {
 
     @FXML
     protected void keyReleasedListen(KeyEvent e) {}
+
+    @FXML
+    protected void mouseClickedListen(MouseEvent e) {
+        pane.requestFocus();
+    }
 }
