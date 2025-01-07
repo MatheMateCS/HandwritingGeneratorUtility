@@ -8,5 +8,6 @@ module com.example.handwritinggeneratorutility {
     opens com.example.handwritinggeneratorutility to javafx.fxml;
     exports com.example.handwritinggeneratorutility;
     exports com.example.handwritinggeneratorutility.controller;
+    exports com.example.handwritinggeneratorutility.model;
     opens com.example.handwritinggeneratorutility.controller to javafx.fxml;
 }
