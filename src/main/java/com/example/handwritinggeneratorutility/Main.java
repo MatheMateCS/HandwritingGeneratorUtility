@@ -1,18 +1,49 @@
 package com.example.handwritinggeneratorutility;
 
+import com.example.handwritinggeneratorutility.controller.IntroController;
+import com.example.handwritinggeneratorutility.model.GeneratorConfiguration;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("introduction.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL introPath = Main.class.getResource("introduction.fxml");
+        fxmlLoader.setLocation(introPath);
+        Parent root = fxmlLoader.load();
+        ((IntroController) fxmlLoader.getController()).setDefault(stage);
+
+        Scene scene = new Scene(root, 400, 400);
+
+        stage.setTitle("Генератор рукописных изображений");
+        stage.getIcons().add(new Image(String.valueOf(Main.class.getResource("images/icon.jpg"))));
+        stage.setResizable(false);
+        stage.setAlwaysOnTop(true);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void launchGeneratorWindow(GeneratorConfiguration conf) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL introPath = Main.class.getResource("generator.fxml");
+        fxmlLoader.setLocation(introPath);
+        Parent root = fxmlLoader.load();
+//        ((IntroController) fxmlLoader.getController()).setDefault(stage);
+
+        Scene scene = new Scene(root, conf.getWidth(), conf.getHeight());
+
+        stage.setTitle("Холст для генерации изображений");
+        stage.setResizable(true);
+        stage.setAlwaysOnTop(true);
         stage.setScene(scene);
         stage.show();
     }
