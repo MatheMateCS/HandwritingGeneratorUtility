@@ -16,4 +16,6 @@ public class GeneratorConfiguration {
     public int getHeight() { return this.height; }
 
     public String getPath() { return this.path; }
+
+    public void setPath(String path) { this.path = path; }
 }
