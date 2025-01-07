@@ -1,11 +1,9 @@
 .btn {
     -fx-background-color: black;
-    -fx-text-fill: white;
 }
 
 .btn:hover {
     -fx-background-color: #555555;
-    -fx-text-fill: white;
 }
 
 #err_message {
@@ -14,3 +12,26 @@
     -fx-max-width: 196px;
 }
 
+#menubar {
+    -fx-background-color: black;
+    /*-fx-background-image: url('../images/menubar.png');*/
+}
+
+#menu_file,
+#menu_edit,
+#menu_help {
+    -fx-background-color: black;
+}
+
+#menu_file:hover,
+#menu_edit:hover,
+#menu_help:hover,
+#mi_load:hover,
+#mi_load:focused,
+#mi_exit:hover,
+#mi_exit:focused,
+#mi_about:hover,
+#mi_about:focused {
+    -fx-background-color: #555555;
+    -fx-cursor: HAND;
+}

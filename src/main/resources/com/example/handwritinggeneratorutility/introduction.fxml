@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -15,26 +14,17 @@
    <children>
       <MenuBar id="menubar" prefHeight="20.0" prefWidth="400.0" stylesheets="@styles/introduction.css">
         <menus>
-          <Menu mnemonicParsing="false" styleClass="menu" text="Файл">
+          <Menu id="menu_file" fx:id="menu_file" mnemonicParsing="false" text="Файл">
             <items>
-                  <MenuItem fx:id="mi_load" mnemonicParsing="false" onAction="#loadConf" text="Загрузить конфигурацию" />
-              <MenuItem fx:id="mi_exit" mnemonicParsing="false" onAction="#closePage" text="Выйти" />
+                  <MenuItem id="mi_load" fx:id="mi_load" mnemonicParsing="false" onAction="#loadConf" text="Загрузить конфигурацию" />
+              <MenuItem id="mi_exit" fx:id="mi_exit" mnemonicParsing="false" onAction="#closePage" text="Выйти" />
             </items>
-               <accelerator>
-                  <KeyCodeCombination alt="UP" code="F" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator>
           </Menu>
-          <Menu mnemonicParsing="false" styleClass="menu" text="Правка">
-               <accelerator>
-                  <KeyCodeCombination alt="UP" code="E" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator></Menu>
-          <Menu mnemonicParsing="false" text="Помощь">
+          <Menu id="menu_edit" fx:id="menu_edit" mnemonicParsing="false" styleClass="menu" text="Правка" />
+          <Menu id="menu_help" fx:id="menu_help" mnemonicParsing="false" text="Помощь">
             <items>
-              <MenuItem fx:id="mi_about" mnemonicParsing="false" onAction="#showAbout" text="О программе" />
+              <MenuItem id="mi_about" fx:id="mi_about" mnemonicParsing="false" onAction="#showAbout" text="О программе" />
             </items>
-               <accelerator>
-                  <KeyCodeCombination alt="UP" code="H" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator>
           </Menu>
         </menus>
       </MenuBar>
