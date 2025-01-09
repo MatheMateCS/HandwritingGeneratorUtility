@@ -1,8 +1,8 @@
 package com.example.handwritinggeneratorutility.model;
 
 public class GeneratorConfiguration {
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private String path;
 
     public GeneratorConfiguration(int width, int height, String path) {
