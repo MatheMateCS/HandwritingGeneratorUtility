@@ -4,7 +4,7 @@ module com.example.handwritinggeneratorutility {
 
     requires org.kordamp.bootstrapfx.core;
     requires java.compiler;
-    requires java.xml;
+    requires java.desktop;
 
     opens com.example.handwritinggeneratorutility to javafx.fxml;
     exports com.example.handwritinggeneratorutility;
