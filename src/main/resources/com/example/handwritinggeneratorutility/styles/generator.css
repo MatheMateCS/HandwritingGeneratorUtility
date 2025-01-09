@@ -1,0 +1,34 @@
+.btn {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btn:hover {
+    -fx-background-color: #555555;
+    -fx-cursor: HAND;
+}
+
+.btn:pressed {
+    -fx-translate-x: 2px;
+    -fx-translate-y: 2px;
+}
+
+#menubar {
+    -fx-background-color: black;
+}
+
+#menu_file,
+#menu_edit,
+#menu_help {
+    -fx-background-color: black;
+}
+
+#menu_file:hover,
+#menu_edit:hover,
+#menu_help:hover,
+.mi:hover,
+.mi:focused {
+    -fx-background-color: #555555;
+    -fx-cursor: HAND;
+}
