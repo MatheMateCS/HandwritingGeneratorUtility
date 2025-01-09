@@ -12,7 +12,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="pane" fx:id="pane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/generator.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.GeneratorController">
+<AnchorPane id="pane" fx:id="pane" onKeyPressed="#keyPressedListen" onKeyReleased="#keyReleasedListen" onMouseClicked="#mouseClickedListen" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/generator.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.GeneratorController">
    <children>
       <MenuBar id="menubar" fx:id="menubar" layoutY="1.0" prefHeight="26.0" prefWidth="600.0" stylesheets="@styles/generator.css">
         <menus>
