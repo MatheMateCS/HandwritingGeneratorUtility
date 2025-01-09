@@ -32,3 +32,8 @@
     -fx-background-color: #555555;
     -fx-cursor: HAND;
 }
+
+#canvas {
+    -fx-background-color: red;
+    visibility: true;
+}
