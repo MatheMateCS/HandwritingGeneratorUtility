@@ -6,6 +6,11 @@
     -fx-background-color: #555555;
 }
 
+.btn:pressed {
+    -fx-translate-x: 2px;
+    -fx-translate-y: 2px;
+}
+
 #err_message {
     visibility: false;
     -fx-wrap-text: true;
@@ -14,7 +19,6 @@
 
 #menubar {
     -fx-background-color: black;
-    /*-fx-background-image: url('../images/menubar.png');*/
 }
 
 #menu_file,
