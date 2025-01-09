@@ -3,8 +3,17 @@ package com.example.handwritinggeneratorutility.controller;
 import com.example.handwritinggeneratorutility.model.Generator;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -67,13 +76,29 @@ public class GeneratorController {
 
     public GeneratorController() {}
 
+    //TEMP
+    private void AUXILIARY_TEST() {
+        GraphicsContext g = this.canvas.getGraphicsContext2D();
+        g.setFill(Color.WHITE);
+        g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        g.setFill(Color.BLACK);
+        g.fillRect(20, 10, 100, 100);
+    }
+
     public void setDefault(Stage stage, Generator generator) {
         this.stage = stage;
         this.generator = generator;
+
         this.canvas.setWidth(generator.getConf().getWidth());
         this.canvas.setHeight(generator.getConf().getHeight());
+        this.canvas.setVisible(true);
+        this.AUXILIARY_TEST();
+
+        this.generator.setCanvas(this.canvas);
+
         this.tf_path.setText(generator.getConf().getPath());
         this.tf_path.setDisable(true);
+
         this.chooseBrush();
     }
 
@@ -84,8 +109,10 @@ public class GeneratorController {
     @FXML
     protected void openFile() {}
 
-    @FXML
-    protected void save() {}
+    @FXML //@TEMP
+    protected void save() {
+        this.generator.savePicture();
+    }
 
     @FXML
     protected void saveAs() {}
@@ -123,5 +150,31 @@ public class GeneratorController {
         if(enteredPath.exists()) dirChooser.setInitialDirectory(enteredPath);
         File selectedDir = dirChooser.showDialog(this.stage);
         if(selectedDir != null) tf_path.setText(selectedDir.getPath());
+    }
+
+    @FXML
+    protected void keyPressedListen(KeyEvent e) {
+        if(e.isControlDown() && e.getCode().getChar().equals("Q")) {
+            this.closePage();
+        }
+        if(e.isControlDown() && e.getCode().getChar().equals("D")) {
+            this.clearCanvas();
+        }
+        if(e.isControlDown() && e.isAltDown() && e.getCode().getChar().equals("P")) {
+            this.stage.setAlwaysOnTop(!this.stage.alwaysOnTopProperty().getValue());
+        }
+        if(e.getCode().getName().equals("Esc")) {
+            pane.requestFocus();
+        }
+
+        if(e.getCode().getName().equals("Enter")) {}
+    }
+
+    @FXML
+    protected void keyReleasedListen(KeyEvent e) {}
+
+    @FXML
+    protected void mouseClickedListen(MouseEvent e) {
+        pane.requestFocus();
     }
 }
