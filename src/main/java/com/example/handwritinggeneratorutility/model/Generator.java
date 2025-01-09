@@ -1,14 +1,27 @@
 package com.example.handwritinggeneratorutility.model;
 
-import com.example.handwritinggeneratorutility.controller.GeneratorController;
-
 public class Generator {
 
-    private GeneratorConfiguration configuration;
+    public enum Tool {
+        BRUSH,
+        ERASER
+    }
+
+    private final GeneratorConfiguration configuration;
+
+    private Tool state;
 
     public Generator(GeneratorConfiguration configuration) {
         this.configuration = configuration;
+        this.state = Tool.BRUSH;
     }
 
+    public GeneratorConfiguration getConf() { return this.configuration; }
+
+    public void setCanvasState(Tool state) { this.state = state; }
+
+    public Tool getCanvasState() { return this.state; }
+
     public void savePicture() {}
+
 }
