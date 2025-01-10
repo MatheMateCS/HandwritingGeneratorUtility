@@ -23,6 +23,8 @@ public class GeneratorController {
 
     private Generator generator;
 
+    private GraphicsContext g;
+
     @FXML
     protected Stage stage;
 
@@ -69,35 +71,39 @@ public class GeneratorController {
     protected TextField tf_label;
 
     @FXML
+    protected Button btn_clear_label;
+
+    @FXML
     protected Button btn_save;
 
     @FXML
     protected Button btn_clear;
 
+
     public GeneratorController() {}
 
     //TEMP
     private void AUXILIARY_TEST() {
-        GraphicsContext g = this.canvas.getGraphicsContext2D();
-        g.setFill(Color.WHITE);
-        g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        g.setFill(Color.BLACK);
-        g.fillRect(20, 10, 100, 100);
+        this.g.setFill(Color.WHITE);
+        this.g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        this.g.setFill(Color.BLACK);
+        this.g.fillRect(20, 10, 100, 100);
     }
 
     public void setDefault(Stage stage, Generator generator) {
         this.stage = stage;
         this.generator = generator;
 
-        this.canvas.setWidth(generator.getConf().getWidth());
-        this.canvas.setHeight(generator.getConf().getHeight());
-        this.canvas.setVisible(true);
+        canvas.setWidth(generator.getConf().getWidth());
+        canvas.setHeight(generator.getConf().getHeight());
+        canvas.setVisible(true);
+        this.g = canvas.getGraphicsContext2D();
         this.AUXILIARY_TEST();
 
         this.generator.setCanvas(this.canvas);
 
-        this.tf_path.setText(generator.getConf().getPath());
-        this.tf_path.setDisable(true);
+        tf_path.setText(generator.getConf().getPath());
+        tf_path.setDisable(true);
 
         this.chooseBrush();
     }
@@ -123,7 +129,16 @@ public class GeneratorController {
     }
 
     @FXML
-    protected void clearCanvas() {}
+    protected void clearCanvas() {
+        this.g.setFill(Color.WHITE);
+        this.g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        this.g.setFill(Color.BLACK);
+    }
+
+    @FXML
+    protected void clearLabel() {
+        tf_label.setText("");
+    }
 
     @FXML
     protected void chooseBrush() {
@@ -177,4 +192,17 @@ public class GeneratorController {
     protected void mouseClickedListen(MouseEvent e) {
         pane.requestFocus();
     }
+
+    @FXML
+    protected void canvasMousePressedListen(MouseEvent e) {}
+
+    @FXML
+    protected void canvasMouseDraggedListen(MouseEvent e) {
+        if(this.generator.getCanvasState() == Generator.Tool.BRUSH) {
+            this.g.fillOval(e.getX(), e.getY(), 10, 10);
+        }
+    }
+
+    @FXML
+    protected void canvasMouseReleasedListen(MouseEvent e) {}
 }
