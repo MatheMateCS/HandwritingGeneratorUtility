@@ -14,6 +14,25 @@
     -fx-translate-y: 2px;
 }
 
+#btn_delete {
+    -fx-max-width: 24px;
+    -fx-background-color: white;
+    -fx-background-image: url("../images/trashcan_0.png");
+    -fx-background-repeat: no-repeat;
+}
+
+#btn_delete:hover {
+    -fx-background-color: lightgrey;
+    -fx-background-image: url("../images/trashcan_1.png");
+    -fx-cursor: HAND;
+}
+
+#btn_delete:pressed {
+    -fx-background-color: red;
+    -fx-background-image: url("../images/trashcan_1.png");
+}
+
+
 #menubar {
     -fx-background-color: black;
 }

@@ -8,49 +8,85 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="pane" fx:id="pane" onKeyPressed="#keyPressedListen" onKeyReleased="#keyReleasedListen" onMouseClicked="#mouseClickedListen" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/generator.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.GeneratorController">
+<AnchorPane id="pane" fx:id="pane" onKeyPressed="#keyPressedListen" onKeyReleased="#keyReleasedListen" onMouseClicked="#mouseClickedListen" prefHeight="398.0" prefWidth="600.0" stylesheets="@styles/generator.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.handwritinggeneratorutility.controller.GeneratorController">
    <children>
-      <MenuBar id="menubar" fx:id="menubar" layoutY="1.0" prefHeight="26.0" prefWidth="600.0" stylesheets="@styles/generator.css">
-        <menus>
-          <Menu id="menu_file" fx:id="menu_file" mnemonicParsing="false" text="Файл">
-            <items>
-                  <MenuItem id="mi_open" fx:id="mi_open" mnemonicParsing="false" onAction="#openFile" styleClass="mi" text="Открыть" />
-                  <MenuItem id="mi_save" fx:id="mi_save" mnemonicParsing="false" onAction="#save" styleClass="mi" text="Сохранить" />
-                  <MenuItem id="mi_save_as" fx:id="mi_save_as" mnemonicParsing="false" onAction="#saveAs" styleClass="mi" text="Сохранить как" />
-              <MenuItem id="mi_exit" fx:id="mi_exit" mnemonicParsing="false" onAction="#closePage" styleClass="mi" text="Выйти" />
-            </items>
-          </Menu>
-          <Menu id="menu_edit" fx:id="menu_edit" mnemonicParsing="false" text="Правка">
-            <items>
-              <MenuItem id="mi_clear" fx:id="mi_clear" mnemonicParsing="false" onAction="#clearCanvas" styleClass="mi" text="Очистить холст" />
-                  <MenuItem id="mi_brush" fx:id="mi_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="mi" text="Выбрать кисть" />
-                  <MenuItem id="mi_eraser" fx:id="mi_eraser" mnemonicParsing="false" onAction="#chooseEraser" styleClass="mi" text="Выбрать ластик" />
-            </items>
-          </Menu>
-          <Menu id="menu_help" fx:id="menu_help" mnemonicParsing="false" text="Справка">
-            <items>
-              <MenuItem id="mi_about" fx:id="mi_about" mnemonicParsing="false" onAction="#showAbout" styleClass="mi" text="Инструкция" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Canvas id="canvas" fx:id="canvas" height="261.0" layoutX="212.0" layoutY="39.0" width="388.0" />
-      <ToolBar id="toolbar" fx:id="toolbar" layoutX="268.0" layoutY="316.0" orientation="VERTICAL" prefHeight="102.0" prefWidth="330.0">
-        <items>
-            <Slider id="slider" fx:id="slider" prefHeight="14.0" prefWidth="92.0" />
-            <RadioButton id="radio__brush" fx:id="radio_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="radio" text="Кисть" />
-            <RadioButton id="radio__eraser" fx:id="radio_eraser" mnemonicParsing="false" onAction="#chooseEraser" styleClass="radio" text="Ластик" />
-        </items>
-      </ToolBar>
-      <Button fx:id="btn_clear" layoutX="126.0" layoutY="325.0" mnemonicParsing="false" onAction="#clearCanvas" styleClass="btn" stylesheets="@styles/generator.css" text="Очистить" />
-      <Button fx:id="btn_save" layoutX="14.0" layoutY="325.0" mnemonicParsing="false" onAction="#save" styleClass="btn" stylesheets="@styles/generator.css" text="Сохранить" />
-      <TextField id="tf_path" fx:id="tf_path" layoutX="13.0" layoutY="104.0" prefHeight="26.0" prefWidth="185.0" />
-      <Button fx:id="btn_select_path" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#pathSelect" styleClass="btn" stylesheets="@styles/generator.css" text="Изменить папку сохранения" />
-      <TextField id="tf_label" fx:id="tf_label" layoutX="51.0" layoutY="209.0" />
-      <Label fx:id="lb_label" layoutX="13.0" layoutY="213.0" text="Метка" />
+      <VBox prefHeight="398.0" prefWidth="601.0">
+         <children>
+            <MenuBar id="menubar" fx:id="menubar" prefHeight="26.0" prefWidth="600.0" stylesheets="@styles/generator.css">
+              <menus>
+                <Menu id="menu_file" fx:id="menu_file" mnemonicParsing="false" text="Файл">
+                  <items>
+                        <MenuItem id="mi_open" fx:id="mi_open" mnemonicParsing="false" onAction="#openFile" styleClass="mi" text="Открыть" />
+                        <MenuItem id="mi_save" fx:id="mi_save" mnemonicParsing="false" onAction="#save" styleClass="mi" text="Сохранить" />
+                        <MenuItem id="mi_save_as" fx:id="mi_save_as" mnemonicParsing="false" onAction="#saveAs" styleClass="mi" text="Сохранить как" />
+                    <MenuItem id="mi_exit" fx:id="mi_exit" mnemonicParsing="false" onAction="#closePage" styleClass="mi" text="Выйти" />
+                  </items>
+                </Menu>
+                <Menu id="menu_edit" fx:id="menu_edit" mnemonicParsing="false" text="Правка">
+                  <items>
+                    <MenuItem id="mi_clear" fx:id="mi_clear" mnemonicParsing="false" onAction="#clearCanvas" styleClass="mi" text="Очистить холст" />
+                        <MenuItem id="mi_brush" fx:id="mi_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="mi" text="Выбрать кисть" />
+                        <MenuItem id="mi_eraser" fx:id="mi_eraser" mnemonicParsing="false" onAction="#chooseEraser" styleClass="mi" text="Выбрать ластик" />
+                  </items>
+                </Menu>
+                <Menu id="menu_help" fx:id="menu_help" mnemonicParsing="false" text="Справка">
+                  <items>
+                    <MenuItem id="mi_about" fx:id="mi_about" mnemonicParsing="false" onAction="#showAbout" styleClass="mi" text="Инструкция" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <SplitPane dividerPositions="0.5036666666666666" prefHeight="504.0" prefWidth="427.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <VBox layoutX="1.0" prefHeight="371.0" prefWidth="299.0">
+                           <children>
+                              <TextField id="tf_path" fx:id="tf_path" prefHeight="26.0" prefWidth="194.0" />
+                              <Button fx:id="btn_select_path" mnemonicParsing="false" onAction="#pathSelect" styleClass="btn" stylesheets="@styles/generator.css" text="Изменить папку сохранения" />
+                              <HBox prefHeight="21.0" prefWidth="299.0">
+                                 <children>
+                                    <Label fx:id="lb_label" text="Метка" />
+                                    <TextField id="tf_label" fx:id="tf_label" />
+                                    <Button id="btn_delete" fx:id="btn_clear_label" mnemonicParsing="false" onAction="#clearLabel" prefHeight="21.0" prefWidth="65.0" styleClass="btn" wrapText="true" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="134.0">
+                                 <children>
+                                    <Button fx:id="btn_save" mnemonicParsing="false" onAction="#save" styleClass="btn" stylesheets="@styles/generator.css" text="Сохранить" />
+                                    <Button fx:id="btn_clear" mnemonicParsing="false" onAction="#clearCanvas" styleClass="btn" stylesheets="@styles/generator.css" text="Очистить" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="254.0">
+                     <children>
+                        <VBox prefHeight="220.0" prefWidth="295.0">
+                           <children>
+                              <Canvas id="canvas" fx:id="canvas" height="207.0" width="294.0" />
+                           </children>
+                        </VBox>
+                        <ToolBar id="toolbar" fx:id="toolbar" layoutX="1.0" layoutY="214.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="295.0">
+                          <items>
+                              <Slider id="slider" fx:id="slider" prefHeight="14.0" prefWidth="92.0" />
+                              <RadioButton id="radio__brush" fx:id="radio_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="radio" text="Кисть" />
+                              <RadioButton id="radio__eraser" fx:id="radio_eraser" mnemonicParsing="false" onAction="#chooseEraser" styleClass="radio" text="Ластик" />
+                          </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
