@@ -112,12 +112,17 @@ public class GeneratorController {
         return this.generator.getCanvasState() == Generator.Tool.BRUSH;
     }
 
+    private boolean isLabelValid() { return true; }
     @FXML
     protected void openFile() {}
 
     @FXML //@TEMP
     protected void save() {
-        this.generator.savePicture();
+        if(this.isLabelValid()) {
+            this.generator.savePicture(tf_label.getCharacters().toString());
+        } else {
+            // TODO: show error
+        }
     }
 
     @FXML
