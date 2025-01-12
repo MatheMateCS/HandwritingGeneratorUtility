@@ -2,16 +2,13 @@ package com.example.handwritinggeneratorutility.model;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelReader;
-import javafx.scene.shape.Path;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class Generator {
 
@@ -45,9 +42,10 @@ public class Generator {
         return bufferedImage;
     }
 
-    //TODO
     private String generateFilename() {
-        return "image" + this.canvas.getWidth();
+        File labels = new File(this.configuration.getPath() + "\\HGU_dataset\\labels.json");
+        String hex = Integer.toHexString((int) labels.length() % (1 << 20));
+        return "0x" + hex;
     }
 
     //TODO
