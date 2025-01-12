@@ -29,12 +29,19 @@
 
 #btn_delete:pressed {
     -fx-background-color: red;
-    -fx-background-image: url("../images/trashcan_1.png");
 }
 
+#tf_path {
+    -fx-max-width: 200px;
+}
+
+#tf_label {
+    -fx-min-height: 24px;
+}
 
 #menubar {
     -fx-background-color: black;
+    /*-fx-position-shape: ;*/
 }
 
 #menu_file,
@@ -55,4 +62,8 @@
 #canvas {
     -fx-background-color: red;
     visibility: true;
+}
+
+.radio, #lb_label {
+    -fx-font-weight: bold;
 }

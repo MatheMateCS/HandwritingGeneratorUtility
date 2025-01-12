@@ -19,7 +19,7 @@
    <children>
       <VBox prefHeight="398.0" prefWidth="601.0">
          <children>
-            <MenuBar id="menubar" fx:id="menubar" prefHeight="26.0" prefWidth="600.0" stylesheets="@styles/generator.css">
+            <MenuBar id="menubar" fx:id="menubar" stylesheets="@styles/generator.css">
               <menus>
                 <Menu id="menu_file" fx:id="menu_file" mnemonicParsing="false" text="Файл">
                   <items>
@@ -47,13 +47,13 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <VBox layoutX="1.0" prefHeight="371.0" prefWidth="299.0">
+                        <VBox layoutX="1.0" prefHeight="371.0" prefWidth="299.0" style="-fx-background-color: lightblue;">
                            <children>
                               <TextField id="tf_path" fx:id="tf_path" prefHeight="26.0" prefWidth="194.0" />
                               <Button fx:id="btn_select_path" mnemonicParsing="false" onAction="#pathSelect" styleClass="btn" stylesheets="@styles/generator.css" text="Изменить папку сохранения" />
                               <HBox prefHeight="21.0" prefWidth="299.0">
                                  <children>
-                                    <Label fx:id="lb_label" text="Метка" />
+                                    <Label id="lb_label" fx:id="lb_label" text="Метка" />
                                     <TextField id="tf_label" fx:id="tf_label" />
                                     <Button id="btn_delete" fx:id="btn_clear_label" mnemonicParsing="false" onAction="#clearLabel" prefHeight="21.0" prefWidth="65.0" styleClass="btn" wrapText="true" />
                                  </children>
@@ -61,7 +61,7 @@
                               <HBox prefHeight="25.0" prefWidth="134.0">
                                  <children>
                                     <Button fx:id="btn_save" mnemonicParsing="false" onAction="#save" styleClass="btn" stylesheets="@styles/generator.css" text="Сохранить" />
-                                    <Button fx:id="btn_clear" mnemonicParsing="false" onAction="#clearCanvas" styleClass="btn" stylesheets="@styles/generator.css" text="Очистить" />
+                                    <Button fx:id="btn_clear" mnemonicParsing="false" onAction="#clearAll" styleClass="btn" stylesheets="@styles/generator.css" text="Очистить" />
                                  </children>
                               </HBox>
                            </children>
@@ -72,10 +72,10 @@
                      <children>
                         <VBox prefHeight="220.0" prefWidth="295.0">
                            <children>
-                              <Canvas id="canvas" fx:id="canvas" height="207.0" width="294.0" />
+                              <Canvas id="canvas" fx:id="canvas" height="207.0" onMouseDragged="#canvasMouseDraggedListen" onMousePressed="#canvasMousePressedListen" onMouseReleased="#canvasMouseReleasedListen" width="294.0" />
                            </children>
                         </VBox>
-                        <ToolBar id="toolbar" fx:id="toolbar" layoutX="1.0" layoutY="214.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="295.0">
+                        <ToolBar id="toolbar" fx:id="toolbar" layoutX="1.0" layoutY="214.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="295.0" style="-fx-background-color: lightblue;">
                           <items>
                               <Slider id="slider" fx:id="slider" prefHeight="14.0" prefWidth="92.0" />
                               <RadioButton id="radio__brush" fx:id="radio_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="radio" text="Кисть" />

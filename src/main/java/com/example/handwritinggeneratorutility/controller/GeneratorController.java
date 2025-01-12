@@ -146,6 +146,12 @@ public class GeneratorController {
     }
 
     @FXML
+    protected void clearAll() {
+        this.clearCanvas();
+        this.clearLabel();
+    }
+
+    @FXML
     protected void chooseBrush() {
         this.radio_brush.setSelected(true);
         this.radio_eraser.setSelected(false);
