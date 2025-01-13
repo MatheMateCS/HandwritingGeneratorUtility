@@ -41,7 +41,6 @@
 
 #menubar {
     -fx-background-color: black;
-    /*-fx-position-shape: ;*/
 }
 
 #menu_file,
@@ -60,7 +59,6 @@
 }
 
 #canvas {
-    -fx-background-color: red;
     visibility: true;
 }
 

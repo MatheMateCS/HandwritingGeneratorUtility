@@ -48,7 +48,6 @@ public class Generator {
         return "0x" + hex;
     }
 
-    //TODO
     private String getExtensionType() { return "png"; }
 
     public GeneratorConfiguration getConf() { return this.configuration; }

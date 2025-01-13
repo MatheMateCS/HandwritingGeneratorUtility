@@ -43,7 +43,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         ((GeneratorController) fxmlLoader.getController()).setDefault(stage, generator);
 
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, conf.getWidth() + 300, Math.max(conf.getHeight() + 100, 400));
 
         stage.setTitle("Холст для генерации изображений");
         stage.getIcons().add(new Image(String.valueOf(Main.class.getResource("images/icon.jpg"))));

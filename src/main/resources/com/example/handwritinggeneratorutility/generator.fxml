@@ -43,7 +43,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <SplitPane dividerPositions="0.5036666666666666" prefHeight="504.0" prefWidth="427.0">
+            <SplitPane dividerPositions="0.5036666666666666" onKeyPressed="#keyPressedListen" onKeyReleased="#keyReleasedListen" onMouseClicked="#mouseClickedListen" prefHeight="504.0" prefWidth="427.0">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -71,18 +71,18 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="254.0">
                      <children>
-                        <VBox prefHeight="220.0" prefWidth="295.0">
+                        <VBox prefHeight="373.0" prefWidth="295.0">
                            <children>
-                              <Canvas id="canvas" fx:id="canvas" height="207.0" onMouseDragged="#canvasMouseDraggedListen" onMousePressed="#canvasMousePressedListen" onMouseReleased="#canvasMouseReleasedListen" width="294.0" />
+                              <Canvas id="canvas" fx:id="canvas" height="290.0" onKeyPressed="#keyPressedListen" onKeyReleased="#keyReleasedListen" onMouseDragged="#canvasMouseDraggedListen" onMousePressed="#canvasMousePressedListen" onMouseReleased="#canvasMouseReleasedListen" width="294.0" />
+                              <ToolBar id="toolbar" fx:id="toolbar" orientation="VERTICAL" prefHeight="174.0" prefWidth="295.0" style="-fx-background-color: lightblue;">
+                                <items>
+                                    <Slider id="slider" fx:id="slider" prefHeight="14.0" prefWidth="92.0" value="10.0" />
+                                    <RadioButton id="radio__brush" fx:id="radio_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="radio" text="Кисть" />
+                                    <RadioButton id="radio__eraser" fx:id="radio_eraser" mnemonicParsing="false" onAction="#chooseEraser" styleClass="radio" text="Ластик" />
+                                </items>
+                              </ToolBar>
                            </children>
                         </VBox>
-                        <ToolBar id="toolbar" fx:id="toolbar" layoutX="1.0" layoutY="214.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="295.0" style="-fx-background-color: lightblue;">
-                          <items>
-                              <Slider id="slider" fx:id="slider" prefHeight="14.0" prefWidth="92.0" />
-                              <RadioButton id="radio__brush" fx:id="radio_brush" mnemonicParsing="false" onAction="#chooseBrush" styleClass="radio" text="Кисть" />
-                              <RadioButton id="radio__eraser" fx:id="radio_eraser" mnemonicParsing="false" onAction="#chooseEraser" styleClass="radio" text="Ластик" />
-                          </items>
-                        </ToolBar>
                      </children>
                   </AnchorPane>
               </items>
