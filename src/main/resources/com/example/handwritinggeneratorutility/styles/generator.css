@@ -67,3 +67,11 @@
 .radio, #lb_label {
     -fx-font-weight: bold;
 }
+
+#err_message {
+    visibility: false;
+    -fx-wrap-text: true;
+    -fx-max-width: 196px;
+    -fx-text-fill: red;
+    -fx-alignment: center;
+}

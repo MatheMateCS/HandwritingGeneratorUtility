@@ -49,6 +49,7 @@
                      <children>
                         <VBox layoutX="1.0" prefHeight="371.0" prefWidth="299.0" style="-fx-background-color: lightblue;">
                            <children>
+                              <Label id="err_message" fx:id="lb_error" stylesheets="@styles/generator.css" textAlignment="CENTER" textFill="RED" />
                               <TextField id="tf_path" fx:id="tf_path" prefHeight="26.0" prefWidth="194.0" />
                               <Button fx:id="btn_select_path" mnemonicParsing="false" onAction="#pathSelect" styleClass="btn" stylesheets="@styles/generator.css" text="Изменить папку сохранения" />
                               <HBox prefHeight="21.0" prefWidth="299.0">

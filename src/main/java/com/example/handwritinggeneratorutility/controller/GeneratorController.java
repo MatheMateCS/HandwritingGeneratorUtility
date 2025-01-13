@@ -59,6 +59,9 @@ public class GeneratorController {
     protected RadioButton radio_eraser;
 
     @FXML
+    protected Label lb_error;
+
+    @FXML
     protected TextField tf_path;
 
     @FXML
@@ -78,7 +81,6 @@ public class GeneratorController {
 
     @FXML
     protected Button btn_clear;
-
 
     public GeneratorController() {}
 
@@ -112,16 +114,22 @@ public class GeneratorController {
         return this.generator.getCanvasState() == Generator.Tool.BRUSH;
     }
 
-    private boolean isLabelValid() { return true; }
+    private boolean isLabelValid() {
+        // There may be any additional conditions
+        return ! tf_label.getCharacters().isEmpty();
+    }
     @FXML
     protected void openFile() {}
 
     @FXML //@TEMP
     protected void save() {
+        lb_error.setVisible(false);
         if(this.isLabelValid()) {
             this.generator.savePicture(tf_label.getCharacters().toString());
         } else {
-            // TODO: show error
+            lb_error.setText("Метка изображения должна быть указана!");
+            lb_error.setVisible(true);
+            tf_label.requestFocus();
         }
     }
 
