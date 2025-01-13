@@ -145,7 +145,7 @@ public class GeneratorController {
     protected void clearCanvas() {
         this.g.setFill(Color.WHITE);
         this.g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        this.g.setFill(Color.BLACK);
+        this.g.setFill(this.generator.getCanvasState() == Generator.Tool.BRUSH ? Color.BLACK : Color.WHITE);
     }
 
     @FXML
@@ -164,6 +164,7 @@ public class GeneratorController {
         this.radio_brush.setSelected(true);
         this.radio_eraser.setSelected(false);
         this.generator.setCanvasState(Generator.Tool.BRUSH);
+        this.g.setFill(Color.BLACK);
     }
 
     @FXML
@@ -171,6 +172,7 @@ public class GeneratorController {
         this.radio_brush.setSelected(false);
         this.radio_eraser.setSelected(true);
         this.generator.setCanvasState(Generator.Tool.ERASER);
+        this.g.setFill(Color.WHITE);
     }
 
     @FXML
@@ -217,8 +219,15 @@ public class GeneratorController {
 
     @FXML
     protected void canvasMouseDraggedListen(MouseEvent e) {
-        if(this.generator.getCanvasState() == Generator.Tool.BRUSH) {
-            this.g.fillOval(e.getX(), e.getY(), 10, 10);
+        int radius = (int) slider.getValue();
+        switch (this.generator.getCanvasState()) {
+            case Generator.Tool.BRUSH : {
+                this.g.fillOval(e.getX(), e.getY(), radius, radius);
+            }
+            case Generator.Tool.ERASER: {
+                this.g.fillOval(e.getX(), e.getY(), radius, radius);
+            }
+            default: { break; }
         }
     }
 
