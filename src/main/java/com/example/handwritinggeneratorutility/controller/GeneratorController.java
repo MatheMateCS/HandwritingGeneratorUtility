@@ -1,6 +1,7 @@
 package com.example.handwritinggeneratorutility.controller;
 
 import com.example.handwritinggeneratorutility.model.Generator;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -84,23 +85,15 @@ public class GeneratorController {
 
     public GeneratorController() {}
 
-    //TEMP
-    private void AUXILIARY_TEST() {
-        this.g.setFill(Color.WHITE);
-        this.g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        this.g.setFill(Color.BLACK);
-        this.g.fillRect(20, 10, 100, 100);
-    }
-
     public void setDefault(Stage stage, Generator generator) {
         this.stage = stage;
         this.generator = generator;
 
         canvas.setWidth(generator.getConf().getWidth());
         canvas.setHeight(generator.getConf().getHeight());
-        canvas.setVisible(true);
         this.g = canvas.getGraphicsContext2D();
-        this.AUXILIARY_TEST();
+        this.clearCanvas();
+        canvas.setVisible(true);
 
         this.generator.setCanvas(this.canvas);
 
@@ -203,11 +196,27 @@ public class GeneratorController {
             pane.requestFocus();
         }
 
-        if(e.getCode().getName().equals("Enter")) {}
+        if(e.getCode().getName().equals("Enter")) {
+            btn_save.pseudoClassStateChanged(PseudoClass.getPseudoClass("hover"), true);
+            btn_save.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), true);
+            this.save();
+        }
     }
 
+
     @FXML
-    protected void keyReleasedListen(KeyEvent e) {}
+    protected void keyReleasedListen(KeyEvent e) {
+        if(e.getCode().getName().equals("Enter")) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            btn_save.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), false);
+            btn_save.pseudoClassStateChanged(PseudoClass.getPseudoClass("hover"), false);
+            this.clearCanvas();
+        }
+    }
 
     @FXML
     protected void mouseClickedListen(MouseEvent e) {
@@ -222,10 +231,12 @@ public class GeneratorController {
         int radius = (int) slider.getValue();
         switch (this.generator.getCanvasState()) {
             case Generator.Tool.BRUSH : {
-                this.g.fillOval(e.getX(), e.getY(), radius, radius);
+                this.g.fillOval(e.getX()- (double) radius /2, e.getY() - (double) radius /2, radius, radius);
+                break;
             }
             case Generator.Tool.ERASER: {
-                this.g.fillOval(e.getX(), e.getY(), radius, radius);
+                this.g.fillOval(e.getX()- (double) radius /2, e.getY() - (double) radius /2, radius, radius);
+                break;
             }
             default: { break; }
         }
