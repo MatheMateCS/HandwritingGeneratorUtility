@@ -178,7 +178,10 @@ public class GeneratorController {
         File enteredPath = new File(tf_path.getCharacters().toString());
         if(enteredPath.exists()) dirChooser.setInitialDirectory(enteredPath);
         File selectedDir = dirChooser.showDialog(this.stage);
-        if(selectedDir != null) tf_path.setText(selectedDir.getPath());
+        if(selectedDir != null) {
+            tf_path.setText(selectedDir.getPath());
+            this.generator.getConf().setPath(selectedDir.getPath());
+        }
     }
 
     @FXML
