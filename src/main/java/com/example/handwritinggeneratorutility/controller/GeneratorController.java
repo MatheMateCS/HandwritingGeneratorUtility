@@ -127,7 +127,18 @@ public class GeneratorController {
     }
 
     @FXML
-    protected void saveAs() {}
+    protected void saveAs() {
+        DirectoryChooser dirChooser = new DirectoryChooser();
+        dirChooser.setTitle("Выбор папки");
+        File enteredPath = new File(this.generator.getConf().getPath());
+        if(enteredPath.exists()) dirChooser.setInitialDirectory(enteredPath);
+        File selectedDir = dirChooser.showDialog(this.stage);
+        if(selectedDir != null) {
+            tf_path.setText(selectedDir.getPath());
+            this.generator.getConf().setPath(selectedDir.getPath());
+        }
+        this.save();
+    }
 
     @FXML
     protected void closePage() {
